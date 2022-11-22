@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 export class ProdutosModule { }
 
 export interface cadastroProduto {
-  id: number
+  idProduto: number
   nomeProduto: string
   descricaoProduto: string
   valorProduto: number

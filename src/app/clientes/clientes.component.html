@@ -1,9 +1,7 @@
-<!-- Novo Cliente -->
 <!--Tela Principal-->
 <div *ngIf="exibirFormAdd == false">
   <button type="button" class="btn btn-primary" (click)="changeFormAddCliente(0)">Cadastro</button>
 </div>
-<!-- <button type="button" class="btn btn-success" (click)="novoCliente()">Cadastrar Cliente</button> -->
 
 <!-- Formulário de cadastro de cliente-->
 <div *ngIf="exibirFormAdd"> 
@@ -38,17 +36,9 @@
       <th scope="row">{{client.idCliente}}</th>
       <td>{{client.nomeCliente}}</td>
       <td>{{client.sobrenomeCliente}}</td>
-     <!--  <ul class="list-inline m-0">
-        <li class="list-inline-item">
-            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" (click)="changeCliente(product.id)"><i class="fa fa-edit"></i></button>
-        </li>
-        <li class="list-inline-item">
-            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirCliente(product.id)"><i class="fa fa-trash"></i></button>
-        </li>
-      </ul> -->
       <ul class="list-inline m-0">
         <li class="list-inline-item">
-            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" style="position: center;" (click)="changeFormAddCliente(client.idCliente)"><i class="fa fa-edit"></i></button>
+            <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" style="position: center;" (click)="changeFormAddCliente(client.idCliente)"><i class="fa fa-edit"></i></button>
         </li>
         <li class="list-inline-item">
             <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirCliente(client.idCliente)"><i class="fa fa-trash"></i></button>

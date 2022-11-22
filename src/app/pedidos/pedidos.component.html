@@ -6,129 +6,175 @@
 - Data do pedido -->
 
 <!--Tela Principal-->
-<div>
+<!-- <div>
   <td><button type="button" class="btn btn-primary" >Cadastrar Pedido</button></td>
-
+</div> -->
+<div *ngIf="formCadastroPedido == false">
+  <button type="button" class="btn btn-primary">Novo pedido</button>
 </div>
-<!-- <div *ngIf="exibirFormAdd == false">
-  <button type="button" class="btn btn-primary" (click)="changeFormAddProduto(0)">Cadastro</button>
-</div> -->
-<!-- Área Formulário -->
-<!-- Form Cadastro -->
-<!-- <div *ngIf="exibirFormAdd"> 
-  <form aria-hidden="true">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="nome" name = "nome" style="width: 300px;" [(ngModel)] = "nomeProduto" placeholder="Nome do produto.">
-    </div>
-    <div class="mb-3">
-      <label for="descricao" class="form-label">Descrição</label>
-      <input type="text" class="form-control" id="descricao" name = "descricao" style="width: 300px;" [(ngModel)] = "descricaoProduto" placeholder="Descrição do produto.">
-    </div>
-    <div class="mb-3">
-      <label for="valor" class="form-label">Valor</label>
-      <input class="form-control" id="valor" name = "valor" style="width: 300px;" currencyMask [(ngModel)] = "valorProduto" [options]="{ prefix: 'R$', thousands: '.', decimal: ','}">
-    </div>
-    <button type="button" class="btn btn-success" (click)="cadastrarProduto()" *ngIf="idCapturado == 0">Cadastrar</button>
-    <button type="button" class="btn btn-warning" (click)="editarProduto(idCapturado)" *ngIf="idCapturado != 0">Editar</button>
-  </form>
-</div> -->
 
-<!-- Tabela Pedido -->
-<hr>
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Pedido</h6>
+<!-- Área Formulário -->
+<!-- <div *ngIf="exibirFormAdd"> -->
+  <form aria-hidden="true" *ngIf="formCadastroPedido">
+    <div class="mb-3">
+      <label for="nomeClientePedido" class="form-label">Cliente</label>        
+      <input type="text" class="form-control" id="nomeClientePedido" name = "nomeClientePedido" style="width: 300px;" placeholder="Nome do cliente.">
+      <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="adicionarCliente" ><i class="fa fa-plus"></i></button>
     </div>
-  
-    <div class="card-body">
-      <div class="table-responsive">
-        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4" width="100%">
-          <div class="row">
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
-                aria-describedby="dataTable_info" style="width: 100%;">
-                <thead>
-                  <tr role="row">
-                    <th rowspan="1" colspan="5" style="text-align: right;">Pedido N.</th>
-                    <th rowspan="1" colspan="1">00</th>
-                  </tr>
-                </thead>
-                <thead>
+    <div class="mb-3">
+      <label for="nomeProdutoPedido" class="form-label">Produto</label>
+      <input type="text" class="form-control" id="nomeProdutoPedido" name = "nomeProdutoPedido" style="width: 300px;" placeholder="Nome do produto.">
+    </div>
+    <div class="mb-3">
+      <label for="qtdProduto" class="form-label">Qtd</label>
+      <input type="number" class="form-control" id="qtdProduto" name = "qtdProduto" style="width: 300px;">
+    </div>
+    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="adicionarProduto" ><i class="fa fa-plus"></i></button>
+  </form>
+  <hr>
+<!-- </div> -->
+
+<!-- Tabela Cadastro Pedido -->
+
+<div class="card shadow mb-4" *ngIf="formCadastroPedido == true">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Cadastrar Pedido</h6>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4" width="100%">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
                 <tr role="row">
-                  <th rowspan="1" colspan="1">00</th>
-                  <th rowspan="1" colspan="5" style="text-align: center;">Nome do Cliente</th>
+                  <th rowspan="1" colspan="5" style="text-align: right;">Pedido N.</th>
+                  <th rowspan="1" colspan="1" style="text-align: center;">{{idPedido}}</th>
                 </tr>
-                </thead>
-                <thead>
-                  <tr role="row">
-                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      aria-sort="ascending" aria-label="Name: activate to sort column descending"
-                      style="width: 50px;">ID</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      style="width: 150px;">Produto</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      style="width: 200px;">Quantidade</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      style="width: 50px;">Valor Unit</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      style="width: 80px;">Total</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                      style="width: 80px;">Ações</th>
-                  </tr>
-                </thead>
-                
-                <tfoot>
-                  <tr>
-                    <th rowspan="1" colspan="4" style="text-align: center;">Total de itens ( N )</th>
-                    <th rowspan="1" colspan="1" style="text-align: right;">Valor Total</th>
-                    <th rowspan="1" colspan="1">R$ 0,00</th>
-                  </tr>
-                </tfoot>
-                
-                <tbody>
-                 <!--  <tr class="odd" *ngFor="let product of products"> -->
-                  <tr class="odd">
-                    <td>ID Prod</td>
-                    <td>Nome Prod</td>
-                    <td>Qtd Prod</td>
-                    <td>Valor Unit</td>
-                    <td>Total</td>
-                    <td>
-                      <ul class="list-inline m-0">
-                        <li class="list-inline-item">
-                            <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" ><i class="fa fa-edit"></i></button>
-                        </li>
-                        <li class="list-inline-item">
-                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" ><i class="fa fa-trash"></i></button>
-                        </li>
+              </thead>
+              <thead>
+                <tr role="row" style="text-align: center;">
+                  <th rowspan="1" colspan="1">{{idClientePedido}}</th>
+                  <th rowspan="1" colspan="5">Nome do Cliente</th>
+                </tr>
+              </thead>
+              <thead>
+                <tr role="row">
+                  <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 50px;">ID
+                  </th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 150px;">Produto</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 200px;">Quantidade</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 50px;">Valor Unit</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 80px;">Total</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 80px;">Ações</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+                <tr class="odd" *ngFor="let pedido of pedidos">
+                  <td>{{pedido.idPedido}}</td>
+                  <td>{{pedido.nomeProdutoPedido}}</td>
+                  <td>{{pedido.qtdProduto}}</td>
+                  <td>{{pedido.valorUnitario | currency}}</td>
+                  <td>{{pedido.valorTotalPedido | currency}}</td>
+                  <td>
+                    <ul class="list-inline m-0">
+                      <li class="list-inline-item">
+                        <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip"
+                          data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
+                      </li>
+                      <li class="list-inline-item">
+                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip"
+                          data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
+                      </li>
                     </ul>
-                  </tr>
-                  <tr class="odd">
-                    <td>ID Prod</td>
-                    <td>Nome Prod</td>
-                    <td>Qtd Prod</td>
-                    <td>Valor Unit</td>
-                    <td>Total</td>
-                    <td>
-                      <ul class="list-inline m-0">
-                        <li class="list-inline-item">
-                            <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" ><i class="fa fa-edit"></i></button>
-                        </li>
-                        <li class="list-inline-item">
-                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" ><i class="fa fa-trash"></i></button>
-                        </li>
-                    </ul>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <th rowspan="1" colspan="4" style="text-align: center;">Total de itens ( {{totalItens}} )</th>
+                <th rowspan="1" colspan="1" style="text-align: right;">Valor Total</th>
+                <th rowspan="1" colspan="1">{{valorTotalPedido | currency}}</th>
+              </tr>
+              </tfoot>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
+
+<!-- Tabela Exibir Pedidos -->
+<!-- <div ><span style="font-size: 25px;">Não existem itens cadastrados</span></div> -->
+<div class="card shadow mb-4" *ngIf="formCadastroPedido == false">
+<!-- <div><span style="font-size: 25px;">Não existem itens cadastrados</span></div>
+<div class="card shadow mb-4"> -->
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Lista de Pedidos</h6>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4" width="100%">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
+              aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr role="row">
+                  <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                    style="width: 50px;">ID</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 400px;">Cliente</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 20px;">Qtd. de Itens</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 50px;">Valor Total</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 50px;">Data do Pedido</th>
+                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                    style="width: 50px;">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="odd" *ngFor="let pedido of pedidos">
+                  <td>{{pedido.idPedido}}</td>
+                  <td>{{pedido.nomeClientePedido}}</td>
+                  <td>{{pedido.totalItens}}</td>
+                  <td>{{valorTotalPedido}}</td>
+                  <td>{{pedido.dataPedido}}</td>
+                  <td style="align-content: center;">
+                    <ul class="list-inline m-0">
+                      <li class="list-inline-item">
+                          <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
+                      </li>
+                      <li class="list-inline-item">
+                          <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
+                      </li>
+                  </ul>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 
@@ -12,6 +12,15 @@ import { CommonModule } from '@angular/common';
 export class PedidosModule { }
 
 export interface cadastroPedido {
-  id: number
-  valorPedido: number
+  idPedido: number
+  idClientePedido: number
+  nomeClientePedido: string
+  idProdutoPedido: number
+  nomeProdutoPedido: string
+  qtdProduto: number
+  valorUnitario: number
+  valorSomaProdutos: number
+  valorTotalPedido: number
+  totalItens: number
+  dataPedido: string
 }

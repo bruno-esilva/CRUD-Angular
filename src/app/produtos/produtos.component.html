@@ -1,0 +1,39 @@
+<!-- Formulário de cadastro de produtos-->
+<div> 
+  <form aria-hidden="true">
+    <div class="mb-3">
+      <label for="nomeProduto" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="nome" name = "nomeProduto" style="width: 300px;"  placeholder="Nome do produto.">
+    </div>
+    <div class="mb-3">
+      <label for="descricaoProduto" class="form-label">Descrição</label>
+      <input type="text" class="form-control" id="descricao" name = "descricaoProduto" style="width: 300px;"  placeholder="Descrição do produto.">
+    </div>
+    <div class="mb-3">
+      <label for="valorProduto" class="form-label">Valor</label>
+      <input class="form-control" id="valor" name = "valorProduto" style="width: 300px;" currencyMask  [options]="{ prefix: 'R$', thousands: '.', decimal: ','}">
+    </div>
+    <button type="button" class="btn btn-success">Cadastrar</button>
+  </form>
+</div>
+
+<hr>
+<!--Tabela de Clientes-->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Notebook</td>
+      <td>Dell</td>
+      <td>R$ 4.500,00</td>
+    </tr>
+  </tbody>
+</table>

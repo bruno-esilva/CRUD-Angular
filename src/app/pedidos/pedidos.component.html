@@ -1,0 +1,34 @@
+<!-- Pedido
+ - ID
+ - IdCliente
+ - Itens = []
+ - Valor total (método que calcula o valor total)
+- Data do pedido -->
+
+<!-- Form Cadastro do pedido -->
+
+<!-- 
+<p>informar nome do cliente</p>
+<p>Cadastrar itens do pedido (adicionar e excluir itens)</p>
+<p>Calcular valor total do pedido</p>
+<p>Data do pedido</p> 
+-->
+
+<div> 
+  <form aria-hidden="true">
+    <div class="mb-3">
+      <label for="clientePedido" class="form-label">Cliente</label>
+      <input type="text" class="form-control" id="clientePedido" name = "clientePedido" style="width: 300px;"  placeholder="Informe o nome do Cliente.">
+    </div>
+    <div class="mb-3">
+      <label for="descricaoProduto" class="form-label">Descrição</label>
+      <input type="text" class="form-control" id="descricao" name = "descricaoProduto" style="width: 300px;"  placeholder="Descrição do produto.">
+    </div>
+    <div class="mb-3">
+      <label for="valorProduto" class="form-label">Valor</label>
+      <input class="form-control" id="valor" name = "valorProduto" style="width: 300px;" currencyMask  [options]="{ prefix: 'R$', thousands: '.', decimal: ','}">
+    </div>
+    <button type="button" class="btn btn-success">Cadastrar</button>
+  </form>
+</div>
+

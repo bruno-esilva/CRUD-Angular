@@ -1,0 +1,59 @@
+<!-- Novo Cliente -->
+<!--Tela Principal-->
+<div *ngIf="exibirFormAdd == false">
+  <button type="button" class="btn btn-primary" (click)="changeFormAddCliente(0)">Cadastro</button>
+</div>
+<!-- <button type="button" class="btn btn-success" (click)="novoCliente()">Cadastrar Cliente</button> -->
+
+<!-- Formulário de cadastro de cliente-->
+<div *ngIf="exibirFormAdd"> 
+  <form aria-hidden="true">
+    <div class="mb-3">
+      <label for="nomeCliente" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="nome" name = "nomeCliente" style="width: 300px;"  placeholder="Nome do cliente." [(ngModel)] = "nomeCliente">
+    </div>
+    <div class="mb-3">
+      <label for="sobrenomeCliente" class="form-label">Sobrenome</label>
+      <input type="text" class="form-control" id="descricao" name = "sobrenomeCliente" style="width: 300px;"  placeholder="Sobrenome do Cliente." [(ngModel)] = "sobrenomeCliente">
+    </div>
+    <button type="button" class="btn btn-success" (click)="cadastrarCliente()" *ngIf="idCapturado == 0">Cadastrar</button>
+    <button type="button" class="btn btn-warning" (click)="editarCliente(idCapturado)" *ngIf="idCapturado != 0">Editar</button>
+  </form>
+</div>
+
+<hr>
+<!--Tabela de Clientes-->
+<div *ngIf="clients.length == 0"><span style="font-size: 25px;">Não existem itens cadastrados</span></div>
+<table *ngIf="clients.length > 0" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Sobrenome</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <th scope="row">{{client.idCliente}}</th>
+      <td>{{client.nomeCliente}}</td>
+      <td>{{client.sobrenomeCliente}}</td>
+     <!--  <ul class="list-inline m-0">
+        <li class="list-inline-item">
+            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" (click)="changeCliente(product.id)"><i class="fa fa-edit"></i></button>
+        </li>
+        <li class="list-inline-item">
+            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirCliente(product.id)"><i class="fa fa-trash"></i></button>
+        </li>
+      </ul> -->
+      <ul class="list-inline m-0">
+        <li class="list-inline-item">
+            <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" style="position: center;" (click)="changeFormAddCliente(client.idCliente)"><i class="fa fa-edit"></i></button>
+        </li>
+        <li class="list-inline-item">
+            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirCliente(client.idCliente)"><i class="fa fa-trash"></i></button>
+        </li>
+      </ul>
+    </tr>
+  </tbody>
+</table>

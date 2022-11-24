@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { cadastroPedido } from './pedidos.module';
+import { cadastrarPedido, itensDoPedido } from './pedidos.module';
 import { PedidosService } from '../servicos/pedidos.service';
 import { ClientesService } from '../servicos/clientes.service';
 import { ProdutosService } from '../servicos/produtos.service';
+import { ClientesComponent } from '../clientes/clientes.component';
 
 @Component({
   selector: 'app-pedidos',
@@ -11,27 +12,53 @@ import { ProdutosService } from '../servicos/produtos.service';
 })
 export class PedidosComponent {
 
-  constructor() { }
+  constructor(public pedidosService: PedidosService) { 
+    
+  }
 
+  ngOnInit(): void {
+      console.log(this.pedidos)
+      console.log(this.itensDoPedido)
+      console.log(this.itens)
+      }
+
+  itens = this.pedidosService.itensPedido;
   idPedido = 0
   idClientePedido = 0
   valorTotalPedido = 0
   totalItens = 10
   formCadastroPedido = true
-
-  public pedidos: cadastroPedido[] = [
-    {idPedido: 1, idClientePedido: 1, nomeClientePedido: 'José Silva', idProdutoPedido: 1, nomeProdutoPedido: 'Banana', qtdProduto: 1, valorUnitario: 5, valorSomaProdutos: 5, valorTotalPedido: 5, totalItens: 1, dataPedido: '22/11/2022'},
-    {idPedido: 2, idClientePedido: 2, nomeClientePedido: 'João Santos', idProdutoPedido: 2, nomeProdutoPedido: 'Maçã', qtdProduto: 2, valorUnitario: 10, valorSomaProdutos: 20, valorTotalPedido: 20, totalItens: 2, dataPedido: '22/11/2022'}
+  
+  public itensDoPedido:itensDoPedido[] = [
+    {idItem: 1, nomeItem: 'Banana', valorItem: 5, qtdItem: 1, valorQtd: 5},
+    {idItem: 2, nomeItem: 'Maçã', valorItem: 9, qtdItem: 3, valorQtd: 27}
   ];
+
+  
+
+  public pedidos:any[] = [
+    { idPedido: 1, idClientePedido: 1, nomeClientePedido: 'José Silva', itensPedido: this.itens(), valorTotalPedido: 32, dataPedido: '22/11/2022' }
+  ];  
+
+  
+  
+
+  cadastrarPedido() {
+    this.formCadastroPedido = !this.formCadastroPedido
+  }
+
+  calcValorQtd(){
+  }
 
   public static calcValorTotalPedido() {
   }
 
   public static calcQtdItensPedido() {
-
-
+    
   }
 
+  public static buscarCliente(){
 
+  }
 
 }

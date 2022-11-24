@@ -26,8 +26,9 @@
 
 <!-- Área Tabela -->
 <hr>
-<div *ngIf="products.length == 0"><span style="font-size: 25px;">Não existem itens cadastrados</span></div>
-<div *ngIf="products.length > 0" class="card shadow mb-4">
+<!-- <div *ngIf="products.length == 0"><span style="font-size: 25px;">Não existem produtos cadastrados.</span></div>
+<div *ngIf="products.length > 0" class="card shadow mb-4"></div>-->
+<div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Tabela de Cadastros</h6>
   </div>
@@ -83,6 +84,9 @@
                       </li>
                       <li class="list-inline-item">
                           <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirProduto(product.idProduto)"><i class="fa fa-trash"></i></button>
+                      </li>
+                      <li class="list-inline-item">
+                        <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Adicionar ao Pedido"><i class="fa fa-plus"></i></button>
                       </li>
                   </ul>
                 </tr>

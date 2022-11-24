@@ -13,7 +13,7 @@ export class ProdutosComponent {
 
   constructor() { }
 
-  public products: cadastroProduto[] = [];
+  public products:cadastroProduto[] = [];
 
   //Define as variáveis que serão utilizadas nos métodos abaixo
   nomeProduto: string = ''
@@ -48,7 +48,6 @@ export class ProdutosComponent {
 
   //Método para editar os dados (botão editar)
   editarProduto(idProduto: number) {
-
     //Busca o produto na lista pelo id informado
     const result = ProdutosService.getById(idProduto)
     let newProduct: cadastroProduto = {

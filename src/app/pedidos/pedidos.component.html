@@ -1,41 +1,102 @@
-<!-- Pedido
- - ID
- - IdCliente
- - Itens = []
- - Valor total (método que calcula o valor total)
-- Data do pedido -->
-
-<!--Tela Principal-->
-<!-- <div>
-  <td><button type="button" class="btn btn-primary" >Cadastrar Pedido</button></td>
-</div> -->
 <div *ngIf="formCadastroPedido == false">
-  <button type="button" class="btn btn-primary">Novo pedido</button>
+  <button type="button" class="btn btn-primary" (click)="cadastrarPedido()">Novo pedido</button>
+  <hr>
 </div>
 
+<!-- Mensagem sem pedidos -->
+<div *ngIf="pedidos.length == 0"><span style="font-size: 25px;">Não existem pedidos cadastrados.</span></div>
+
+<!-- Tabela Exibir Pedidos -->
+<!-- <div *ngIf="pedidos.length != 0">
+<div class="card shadow mb-4" *ngIf="formCadastroPedido != true">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Lista de Pedidos</h6>
+    </div>
+  
+    <div class="card-body">
+      <div class="table-responsive">
+        <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4" width="100%">
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
+                aria-describedby="dataTable_info" style="width: 100%;">
+                <thead>
+                  <tr role="row">
+                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                      style="width: 50px;">ID</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      style="width: 400px;">Cliente</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      style="width: 20px;">Qtd. de Itens</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      style="width: 50px;">Valor Total</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      style="width: 50px;">Data do Pedido</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                      style="width: 50px;">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd" *ngFor="let pedido of pedidos">
+                    <td>{{pedido.idPedido}}</td>
+                    <td>{{pedido.nomeClientePedido}}</td>
+                    <td>{{pedido.totalItens}}</td>
+                    <td>{{valorTotalPedido}}</td>
+                    <td>{{pedido.dataPedido}}</td>
+                    <td style="align-content: center;">
+                      <ul class="list-inline m-0">
+                        <li class="list-inline-item">
+                            <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
+                        </li>
+                    </ul>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
 <!-- Área Formulário -->
-<!-- <div *ngIf="exibirFormAdd"> -->
-  <form aria-hidden="true" *ngIf="formCadastroPedido">
-    <div class="mb-3">
-      <label for="nomeClientePedido" class="form-label">Cliente</label>        
-      <input type="text" class="form-control" id="nomeClientePedido" name = "nomeClientePedido" style="width: 300px;" placeholder="Nome do cliente.">
-      <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="adicionarCliente" ><i class="fa fa-plus"></i></button>
+<div *ngIf="formCadastroPedido">
+  <h6 class="m-0 font-weight-bold text-primary">Cadastrar Pedido</h6><hr>
+  <form aria-hidden="true" >
+    <div class="form-row">
+      <div class="col-md-auto">
+      <input type="text" class="form-control" id="nomeClientePedido" name="nomeClientePedido" style="width: 300px;" placeholder="Nome do cliente.">
+      </div>
+      <div class="col-md-auto">
+        <button type="button" class="btn btn-success">Adicionar</button>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="nomeProdutoPedido" class="form-label">Produto</label>
-      <input type="text" class="form-control" id="nomeProdutoPedido" name = "nomeProdutoPedido" style="width: 300px;" placeholder="Nome do produto.">
+    <br>
+    <div class="form-row">
+      <div class="col-md-auto">
+        <input type="text" class="form-control" id="nomeProdutoPedido" name="nomeProdutoPedido" style="width: 500px;" placeholder="Nome do produto.">
+      </div>
+      <div class="col-md-auto">
+        <input type="number" class="form-control" id="qtdProduto" name="qtdProduto" style="width: 80px;" placeholder="Qtd">
+      </div>
+      <div class="col-md-auto">
+        <button type="button" class="btn btn-success">Adicionar</button>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="qtdProduto" class="form-label">Qtd</label>
-      <input type="number" class="form-control" id="qtdProduto" name = "qtdProduto" style="width: 300px;">
-    </div>
-    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="adicionarProduto" ><i class="fa fa-plus"></i></button>
   </form>
   <hr>
-<!-- </div> -->
+</div>
+
 
 <!-- Tabela Cadastro Pedido -->
-
 <div class="card shadow mb-4" *ngIf="formCadastroPedido == true">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">Cadastrar Pedido</h6>
@@ -47,19 +108,21 @@
         <div class="row">
         </div>
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12" *ngFor="let pedido of pedidos">
             <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
               aria-describedby="dataTable_info" style="width: 100%;">
               <thead>
                 <tr role="row">
                   <th rowspan="1" colspan="5" style="text-align: right;">Pedido N.</th>
-                  <th rowspan="1" colspan="1" style="text-align: center;">{{idPedido}}</th>
+                  <th rowspan="1" colspan="1" style="text-align: center;">{{pedido.idPedido}}</th>
                 </tr>
               </thead>
               <thead>
                 <tr role="row" style="text-align: center;">
-                  <th rowspan="1" colspan="1">{{idClientePedido}}</th>
-                  <th rowspan="1" colspan="5">Nome do Cliente</th>
+                  <th rowspan="1" colspan="1">{{pedido.idClientePedido}}</th>
+                  <th rowspan="1" colspan="3">{{pedido.nomeClientePedido}}</th>
+                  <th rowspan="1" colspan="1">Data</th>
+                  <th rowspan="1" colspan="1">{{pedido.dataPedido}}</th>
                 </tr>
               </thead>
               <thead>
@@ -68,9 +131,9 @@
                     aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 50px;">ID
                   </th>
                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 150px;">Produto</th>
+                    style="width: 650px;">Produto</th>
                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 200px;">Quantidade</th>
+                    style="width: 20px;">Quantidade</th>
                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
                     style="width: 50px;">Valor Unit</th>
                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
@@ -82,12 +145,12 @@
 
 
               <tbody>
-                <tr class="odd" *ngFor="let pedido of pedidos">
-                  <td>{{pedido.idPedido}}</td>
-                  <td>{{pedido.nomeProdutoPedido}}</td>
-                  <td>{{pedido.qtdProduto}}</td>
-                  <td>{{pedido.valorUnitario | currency}}</td>
-                  <td>{{pedido.valorTotalPedido | currency}}</td>
+                <tr class="odd" *ngFor="let item of itensDoPedido">
+                  <td>{{item.idItem}}</td>
+                  <td>{{item.nomeItem}}</td>
+                  <td>{{item.qtdItem}}</td>
+                  <td>{{item.valorItem | currency}}</td>
+                  <td>{{item.valorQtd | currency}}</td>
                   <td>
                     <ul class="list-inline m-0">
                       <li class="list-inline-item">
@@ -103,9 +166,8 @@
               </tbody>
               <tfoot>
               <tr>
-                <th rowspan="1" colspan="4" style="text-align: center;">Total de itens ( {{totalItens}} )</th>
-                <th rowspan="1" colspan="1" style="text-align: right;">Valor Total</th>
-                <th rowspan="1" colspan="1">{{valorTotalPedido | currency}}</th>
+                <th rowspan="1" colspan="5" style="text-align: right;">Valor Total</th>
+                <th rowspan="1" colspan="1">{{pedido.valorTotalPedido | currency}}</th>
               </tr>
               </tfoot>
             </table>
@@ -114,67 +176,3 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<!-- Tabela Exibir Pedidos -->
-<!-- <div ><span style="font-size: 25px;">Não existem itens cadastrados</span></div> -->
-<div class="card shadow mb-4" *ngIf="formCadastroPedido == false">
-<!-- <div><span style="font-size: 25px;">Não existem itens cadastrados</span></div>
-<div class="card shadow mb-4"> -->
-  <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Lista de Pedidos</h6>
-  </div>
-
-  <div class="card-body">
-    <div class="table-responsive">
-      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4" width="100%">
-        <div class="row">
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <table class="table table-bordered dataTable" id="dataTable" width="90%" cellspacing="2" role="grid"
-              aria-describedby="dataTable_info" style="width: 100%;">
-              <thead>
-                <tr role="row">
-                  <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    aria-sort="ascending" aria-label="Name: activate to sort column descending"
-                    style="width: 50px;">ID</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 400px;">Cliente</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 20px;">Qtd. de Itens</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 50px;">Valor Total</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 50px;">Data do Pedido</th>
-                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                    style="width: 50px;">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="odd" *ngFor="let pedido of pedidos">
-                  <td>{{pedido.idPedido}}</td>
-                  <td>{{pedido.nomeClientePedido}}</td>
-                  <td>{{pedido.totalItens}}</td>
-                  <td>{{valorTotalPedido}}</td>
-                  <td>{{pedido.dataPedido}}</td>
-                  <td style="align-content: center;">
-                    <ul class="list-inline m-0">
-                      <li class="list-inline-item">
-                          <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fa fa-edit"></i></button>
-                      </li>
-                      <li class="list-inline-item">
-                          <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar"><i class="fa fa-trash"></i></button>
-                      </li>
-                  </ul>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-

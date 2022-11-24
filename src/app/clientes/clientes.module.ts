@@ -8,11 +8,11 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule
   ]
+
 })
 export class ClientesModule { }
 
 export interface cadastroCliente {
   idCliente: number
   nomeCliente: string
-  sobrenomeCliente: string
 }

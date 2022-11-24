@@ -8,11 +8,7 @@
   <form aria-hidden="true">
     <div class="mb-3">
       <label for="nomeCliente" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="nome" name = "nomeCliente" style="width: 300px;"  placeholder="Nome do cliente." [(ngModel)] = "nomeCliente">
-    </div>
-    <div class="mb-3">
-      <label for="sobrenomeCliente" class="form-label">Sobrenome</label>
-      <input type="text" class="form-control" id="descricao" name = "sobrenomeCliente" style="width: 300px;"  placeholder="Sobrenome do Cliente." [(ngModel)] = "sobrenomeCliente">
+      <input type="text" class="form-control" id="nome" name = "nomeCliente" style="width: 300px;"  placeholder="Nome completo do cliente." [(ngModel)] = "nomeCliente">
     </div>
     <button type="button" class="btn btn-success" (click)="cadastrarCliente()" *ngIf="idCapturado == 0">Cadastrar</button>
     <button type="button" class="btn btn-warning" (click)="editarCliente(idCapturado)" *ngIf="idCapturado != 0">Editar</button>
@@ -21,27 +17,28 @@
 
 <hr>
 <!--Tabela de Clientes-->
-<div *ngIf="clients.length == 0"><span style="font-size: 25px;">Não existem itens cadastrados</span></div>
+<div *ngIf="clients.length == 0"><span style="font-size: 25px;">Não existem clientes cadastrados.</span></div>
 <table *ngIf="clients.length > 0" class="table table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nome</th>
-      <th scope="col">Sobrenome</th>
-      <th scope="col">Ações</th>
+      <th scope="col" style="text-align: center;">Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let client of clients">
-      <th scope="row">{{client.idCliente}}</th>
-      <td>{{client.nomeCliente}}</td>
-      <td>{{client.sobrenomeCliente}}</td>
-      <ul class="list-inline m-0">
+      <th scope="row" style="width: 1em;">{{client.idCliente}}</th>
+      <td style="width: 92em;">{{client.nomeCliente}}</td>
+      <ul class="list-inline m-2" style="text-align: center; width: 7em;">
         <li class="list-inline-item">
             <button class="btn btn-warning btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Editar" style="position: center;" (click)="changeFormAddCliente(client.idCliente)"><i class="fa fa-edit"></i></button>
         </li>
         <li class="list-inline-item">
             <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Deletar" (click)="excluirCliente(client.idCliente)"><i class="fa fa-trash"></i></button>
+        </li>
+        <li class="list-inline-item">
+          <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Adicionar ao Pedido"><i class="fa fa-plus"></i></button>
         </li>
       </ul>
     </tr>

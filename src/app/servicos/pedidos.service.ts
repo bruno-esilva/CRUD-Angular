@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { cadastroPedido } from '../pedidos/pedidos.module';
 
 @Injectable({
   providedIn: 'root'
@@ -7,4 +6,12 @@ import { cadastroPedido } from '../pedidos/pedidos.module';
 export class PedidosService {
 
   constructor() { }
+
+  itensPedido() {
+    return [
+      {idItem: 1, nomeItem: 'Banana', valorItem: 5, qtdItem: 1, valorQtd: 5},
+      {idItem: 2, nomeItem: 'Maçã', valorItem: 9, qtdItem: 3, valorQtd: 27}
+    ]
+  }
+
 }

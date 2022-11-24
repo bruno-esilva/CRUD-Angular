@@ -9,7 +9,12 @@ export class ProdutosService {
   constructor() { }
 
    //Array com a lista dos produtos
-   private static listOfProducts:cadastroProduto[] = []
+   private static listOfProducts:cadastroProduto[] = [
+    {idProduto: 1, nomeProduto: 'Banana', descricaoProduto: 'Banana nanica', valorProduto: 5},
+    {idProduto: 2, nomeProduto: 'Maçã', descricaoProduto: 'Maçã Verde', valorProduto: 9},
+    {idProduto: 3, nomeProduto: 'Manga', descricaoProduto: 'Manga Tommy', valorProduto: 7},
+    {idProduto: 4, nomeProduto: 'Laranja', descricaoProduto: 'Laranja Lima', valorProduto: 3}
+   ]
   
    //Método para listar os produtos no array listOfProducts
    public static list():cadastroProduto[] {

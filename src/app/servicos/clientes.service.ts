@@ -10,7 +10,12 @@ export class ClientesService {
   constructor() { }
 
   //Array com a lista dos clientes
-  private static listOfClients:cadastroCliente[] = []
+  private static listOfClients:cadastroCliente[] = [
+    {idCliente: 1, nomeCliente: 'José Silva'},
+    {idCliente: 2, nomeCliente: 'João Santos'},
+    {idCliente: 3, nomeCliente: 'Maria Aparecida'},
+    {idCliente: 4, nomeCliente: 'Manoel Andrade'}
+  ]
   
   //Método para listar os produtos no array listOfProducts
   public static list():cadastroCliente[] {

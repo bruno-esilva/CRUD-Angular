@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { PedidosService } from '../servicos/pedidos.service';
 
 
 
@@ -7,11 +8,23 @@ import { CommonModule, DatePipe } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule
+  ],
+  providers: [
+    PedidosService
   ]
 })
 export class PedidosModule { }
 
-export interface cadastroPedido {
+export interface cadastrarPedido {
+  idPedido: number
+  idClientePedido: number
+  nomeClientePedido: string
+  itensDoPedido: itensDoPedido
+  valorTotalPedido: number
+  dataPedido: string
+}
+
+/* export interface cadastroPedido {
   idPedido: number
   idClientePedido: number
   nomeClientePedido: string
@@ -23,4 +36,13 @@ export interface cadastroPedido {
   valorTotalPedido: number
   totalItens: number
   dataPedido: string
+} */
+
+export interface itensDoPedido {
+  idItem: number
+  nomeItem: string
+  valorItem: number
+  qtdItem: number
+  valorQtd: number
 }
+
